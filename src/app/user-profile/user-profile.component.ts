@@ -9,10 +9,16 @@ export class UserProfileComponent implements OnInit {
   
   firstName: string;
   lastName: string;
+  newHobby: string;
   age: number;
   hobbies: string[];
 
   constructor() { }
+
+  addHobby () {
+    this.hobbies.push(this.newHobby);
+    this.newHobby = null;
+  }
 
   ngOnInit() {
     this.firstName = 'Pankaj';

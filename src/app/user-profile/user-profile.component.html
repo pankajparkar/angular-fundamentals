@@ -13,6 +13,11 @@
   </label>
   <label>
     Hobbies
-    <input name="hobbies" [(ngModel)]="hobbies" />
+    <input [(ngModel)]="newHobby" [ngModelOptions]="{standalone: true}" placeholder="Add new hobby ..." /> 
+    <button type="button" (click)="addHobby()">+</button>
+    <hr />
+    <div *ngFor="let hobby of hobbies">
+      <span>{{hobby}}</span>
+    </div>
   </label>
 </form>
