@@ -12,6 +12,7 @@ export class UserProfileComponent implements OnInit {
   newHobby: string;
   age: number;
   hobbies: string[];
+  edit: boolean;
 
   constructor() { }
 

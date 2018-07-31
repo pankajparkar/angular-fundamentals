@@ -1,4 +1,8 @@
-<form #form="ngForm" (ngSubmit)="submitForm()">
+<button (click)="edit = !edit">{{edit ? 'Save': 'Edit'}}</button>
+<hr />
+<ng-container *ngIf="edit;then userForm else info"></ng-container>
+<ng-template #userForm>
+  <form #form="ngForm" (ngSubmit)="submitForm()">
   <label>
     First Name
     <input name="firstName" [(ngModel)]="firstName" />
@@ -21,3 +25,15 @@
     </div>
   </label>
 </form>
+</ng-template>
+<ng-template #info>
+  <div>First Name: {{firstName}}</div>
+  <div>Last Name: {{lastName}}</div>
+  <div>Age: {{age}}</div>
+  <div>
+    Hobbies:
+    <span *ngFor="let hobby of hobbies">
+      {{hobby}}
+    </span> 
+  </div>
+</ng-template>
