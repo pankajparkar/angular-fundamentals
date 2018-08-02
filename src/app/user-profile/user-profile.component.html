@@ -20,9 +20,9 @@
     <input [(ngModel)]="newHobby" [ngModelOptions]="{standalone: true}" placeholder="Add new hobby ..." /> 
     <button type="button" (click)="addHobby()">+</button>
     <hr />
-    <div *ngFor="let hobby of hobbies">
-      <span>{{hobby}}</span>
-    </div>
+    <ul *ngFor="let hobby of hobbies">
+      <li>{{hobby}}</li>
+    </ul>
   </label>
 </form>
 </ng-template>
@@ -32,8 +32,8 @@
   <div>Age: {{age}}</div>
   <div>
     Hobbies:
-    <span *ngFor="let hobby of hobbies">
-      {{hobby}}
-    </span> 
+    <ul *ngFor="let hobby of hobbies">
+      <li>{{hobby}}</li>
+    </ul> 
   </div>
 </ng-template>
