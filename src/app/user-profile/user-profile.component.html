@@ -1,5 +1,4 @@
 <button (click)="edit = !edit">{{edit ? 'Save': 'Edit'}}</button>
-<hr />
 <ng-container *ngIf="edit;then userForm else info"></ng-container>
 <ng-template #userForm>
   <form #form="ngForm" (ngSubmit)="submitForm()">
