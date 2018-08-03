@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'af-user-details-model-driven',
@@ -7,24 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDetailsModelDrivenComponent implements OnInit {
 
-  firstName: string;
-  lastName: string;
-  newHobby: string;
-  age: number;
-  hobbies: string[];
-  edit: boolean;
 
-  constructor() { }
+  userForm: FormGroup
+  edit: boolean;
+  newHobby: string;
+
+  constructor(private fb: FormBuilder) { }
 
   addHobby () {
-    this.hobbies.push(this.newHobby);
+    // this.hobbies.push(this.newHobby);
     this.newHobby = null;
   }
 
   ngOnInit() {
-    this.firstName = 'Pankaj';
-    this.lastName = 'Parkar';
-    this.age = 27;
-    this.hobbies = ['Cricket', 'Football'];
+    this.userForm = new FormGroup({
+      firstName: new FormControl('Pankaj'),
+      lastName: new FormControl('Parkar'),
+      hobbies: new FormControl([]),
+      age: new FormControl(27)
+    })
   }
 }
