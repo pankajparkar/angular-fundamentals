@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'af-user-profile',
@@ -7,25 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
   
-  firstName: string;
-  lastName: string;
   newHobby: string;
-  age: number;
-  hobbies: string[];
   edit: boolean;
+  user: any;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   addHobby () {
-    this.hobbies.push(this.newHobby);
+    this.user.hobbies.push(this.newHobby);
     this.newHobby = null;
   }
 
+  submit () {
+    console.log('Form submitted')
+  }
+
   ngOnInit() {
-    this.firstName = 'Pankaj';
-    this.lastName = 'Parkar';
-    this.age = 27;
-    this.hobbies = ['Cricket', 'Football'];
+    this.user = this.userService.getUser();
   }
 
 }

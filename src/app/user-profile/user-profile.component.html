@@ -1,37 +1,40 @@
 <button (click)="edit = !edit">{{edit ? 'Save': 'Edit'}}</button>
 <ng-container *ngIf="edit;then userForm else info"></ng-container>
 <ng-template #userForm>
-  <form #form="ngForm" (ngSubmit)="submitForm()">
-  <label>
-    First Name
-    <input name="firstName" [(ngModel)]="firstName" />
-  </label>
-  <label>
-    Last Name
-    <input name="lastName" [(ngModel)]="lastName" />
-  </label>
-  <label>
-    Age
-    <input name="age" [(ngModel)]="age" />
-  </label>
-  <label>
-    Hobbies
-    <input [(ngModel)]="newHobby" [ngModelOptions]="{standalone: true}" placeholder="Add new hobby ..." /> 
-    <button type="button" (click)="addHobby()">+</button>
-    <hr />
-    <ul *ngFor="let hobby of hobbies">
-      <li>{{hobby}}</li>
-    </ul>
-  </label>
-</form>
+  <form #f="ngForm" (ngSubmit)="submitForm()">
+    <label>
+      First Name
+      <input name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" required />
+      <span *ngIf="firstName.errors?.required">This field is required</span>
+    </label>
+    <label>
+      Last Name
+      <input name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required />
+      <span *ngIf="lastName.errors?.required">This field is required</span>
+    </label>
+    <label>
+      Age
+      <input name="age" [(ngModel)]="user.age" #age="ngModel" required />
+      <span *ngIf="age.errors?.required">This field is required</span>
+    </label>
+    <label>
+      Hobbies
+      <input [(ngModel)]="newHobby" [ngModelOptions]="{standalone: true}" placeholder="Add new hobby ..." /> 
+      <button type="button" (click)="addHobby()">+</button>
+      <hr />
+      <ul *ngFor="let hobby of user.hobbies">
+        <li>{{hobby}}</li>
+      </ul>
+    </label>
+  </form>
 </ng-template>
 <ng-template #info>
-  <div>First Name: {{firstName}}</div>
-  <div>Last Name: {{lastName}}</div>
-  <div>Age: {{age}}</div>
+  <div>First Name: {{user.firstName}}</div>
+  <div>Last Name: {{user.lastName}}</div>
+  <div>Age: {{user.age}}</div>
   <div>
     Hobbies:
-    <ul *ngFor="let hobby of hobbies">
+    <ul *ngFor="let hobby of user.hobbies">
       <li>{{hobby}}</li>
     </ul> 
   </div>

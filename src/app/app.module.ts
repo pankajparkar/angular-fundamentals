@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserDetailsModelDrivenComponent } from './user-details-model-driven/user-details-model-driven.component';
+import { UserService } from './user.service';
 
 const routes: Route[] = [
   {path: 'template-driven', component: UserProfileComponent},
@@ -25,7 +26,7 @@ const routes: Route[] = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes, {useHash: true})
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

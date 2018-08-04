@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'af-user-details-model-driven',
@@ -8,24 +9,33 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 })
 export class UserDetailsModelDrivenComponent implements OnInit {
 
-
   userForm: FormGroup
   edit: boolean;
   newHobby: string;
+  user: any;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private userService: UserService) { }
 
   addHobby () {
-    // this.hobbies.push(this.newHobby);
+    let hobbyControl = this.userForm.controls.hobbies;
+    this.userForm.controls.hobbies.setValue([...hobbyControl.value, this.newHobby]);
     this.newHobby = null;
+  }
+
+  submit () {
+    this.user = 
+    console.log('Form submitted')
   }
 
   ngOnInit() {
     this.userForm = new FormGroup({
-      firstName: new FormControl('Pankaj'),
-      lastName: new FormControl('Parkar'),
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
       hobbies: new FormControl([]),
-      age: new FormControl(27)
+      age: new FormControl()
     })
+    let user = this.userService.getUser();
+    this.user = user;
+    this.userForm.patchValue(user)
   }
 }
